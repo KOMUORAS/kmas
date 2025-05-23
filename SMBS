@@ -1,0 +1,232 @@
+<!--
+ HAS_SBMS_INT version 2.9.4-rc.
+ All rights reserved. You are not allowed to copy or modify this code. Commercial use requires license.
+ Copyright (c) 2006-2021 "Nexign" JSC (St.Petersburg, Russia; www.nexign.com)
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+  <title id="SHELL-TITLE">SBMS</title>
+
+  <link rel="stylesheet" href="/ps/theme/shell/shell.css" type="text/css"/>
+  <link rel="stylesheet" href="/ps/theme/shell/styles.css" type="text/css"/>
+
+  <script src="/ps/sbms/ps.js"></script>
+  <script src="/ps/ng-core/require.js"></script>
+  <script src="/ps/ng-core/core-all.js"></script>
+  <script src="/ps/ng-components/components-all.js"></script>
+  <script src="/ps/sbms/define.js"></script>
+</head>
+<body class="sbms-shell"
+      tabindex="0"
+      id="PS_SBMS_WORK_WINDOW"
+      style="overflow: hidden;">
+<div id="LOGOTYPE_TAB" class="layout">
+  <div id="SHELL_TOPBAR" class="topbar">
+    <h1 id="SHELL_HEADING" class="system-name"></h1>
+    <div id="SHELL_MENU_OVER_HORIZONTAL" class="menu-container"></div>
+    <div id="SHELL_MENU_SCROLL_BUTTONS" class="menu_scroll_buttons">
+      <ps-icon icon="arr-left" class="menu_scroll_left"></ps-icon>
+      <ps-icon icon="arr-right" class="menu_scroll_right"></ps-icon>
+    </div>
+    <div id="SHELL_USER_MENU" class="user-menu">
+      <div class="topbar-user-time-container">
+      </div>
+      <div class="topbar-settings">
+      </div>
+      <a class="topbar-exit" id="SHELL_CLOSE1">
+      </a>
+    </div>
+  </div>
+  <div id="SHELL_WORKSPACE_AREA" class="workspace">
+        <ps-splitter options="{orientation: 'vertical'}" id="SHELL_SPLITTER">
+          <ps-splitter-zone id="SHELL_SPLITTER_ZONE_FIRST" class="ng-hide" min-size="'150px'" style="max-width: 25%;">
+            <div id="SHELL_MENU_OVER_VERTICAL" class="menu-container-vertical" style="width: 100%;"></div>
+          </ps-splitter-zone>
+          <ps-splitter-zone id="SHELL_SPLITTER_ZONE_SECOND">
+            <div id="SHELL_CONTENT" class="content content_flex" style="width: 100%; height: 100%;">
+              <div id="CAPTION" class="sbms-caption sbms-caption_flex"  style="display: none;">
+                <div id="SHELL_CAPTION" class="sbms-caption__shell-caption">
+                  <ps-breadcrumbs breadcrumbs="app.breadcrumbs"></ps-breadcrumbs>
+                  <div id="SHELL_BREADCRUMB" class="caption-breadcrumb"></div>
+                  <span id="SHELL_REDIRECT" class="external-bis" onclick="HSIRedirect();"
+                        style="display:none;">
+                                        <span class="external-bis__separator"></span>
+                                        <a title="Перейти в GF" class="external-bis__link">
+                                            <label class="external-bis__link__label">Перейти в GF</label>
+                                        </a>
+                                    </span>
+                </div>
+                <div class="shell-caption-navigation" style="display:none;" id="listNavigation">
+
+                  <a class="shell-caption-navigation__item shell-caption-navigation__item_first"
+                     id="listNavigationFirstButton"></a>
+                  <span class="shell-caption-navigation__separator"></span>
+                  <a class="shell-caption-navigation__item shell-caption-navigation__item_prev"
+                     id="listNavigationPreviousButton">
+                    <label class="shell-caption-navigation__label"
+                           id="listNavigationPreviousLabel"></label>
+                  </a>
+                  <span class="shell-caption-navigation__separator"></span>
+                  <a class="shell-caption-navigation__item shell-caption-navigation__item_next"
+                     id="listNavigationNextButton">
+                    <label class="shell-caption-navigation__label"
+                           id="listNavigationNextLabel"></label>
+                  </a>
+                  <span class="shell-caption-navigation__separator"></span>
+                  <a class="shell-caption-navigation__item shell-caption-navigation__item_last"
+                     id="listNavigationLastButton"></a>
+                </div>
+                <div id="SHELL_FORM_HEAD" class="title-area-info">
+                  <div id="FORM_TUNING" class="info-settings"><a class="title-area-link"
+                                                                 id="FORM_TUNING1"
+                                                                 onclick="shell()._call_tuning_func()"></a>
+                  </div>
+                  <div class="info-refresh" style="display:none;" id="refreshElement"><a
+                          class="title-area-link"
+                          id="refreshElementButton">f
+                          </a>
+                  </div>
+                </div>
+
+              </div>
+              <ps-splitter options="{orientation: 'vertical'}" id="ADDITIONAL_INFO_ZONE_SPLITTER">
+                <ps-splitter-zone id="ADDITIONAL_INFO_ZONE_SPLITTER_ZONE_FIRST" style="display: flex; flex-direction: column">
+                  <div id="SSW_WORKFRAMES_CONTAINER" class="workframe-shell" style="width: 100%; height: 100%;"></div>
+                </ps-splitter-zone>
+                <ps-splitter-zone id="ADDITIONAL_INFO_ZONE_SPLITTER_ZONE_SECOND" min-size="'150px'" style="max-width: 25%;overflow-y: auto;" class="ng-hide">
+                  <div id="ADDITIONAL_INFO_ZONE" ></div>
+                </ps-splitter-zone>
+            </div>
+
+          </ps-splitter-zone>
+  </div>
+</div>
+<span id="sbms-foo"></span>
+</body>
+</html>
+
+
+
+
+  <title></title>
+
+
+
+  <meta name="route-pattern" content="/:user_id/:repository/commit/:name(/*path)" data-turbo-transient>
+  <meta name="route-controller" content="commit" data-turbo-transient>
+  <meta name="route-action" content="show" data-turbo-transient>
+
+    
+  <meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
+
+
+  <meta name="request-id" content="0E4D:2C428F:1E3D79E:1F3806A:67B67547" data-turbo-transient="true" /><meta name="html-safe-nonce" content="64f9d49e9565d7d8887e31b30e462a07059d2cf248388d359faf14a71a430714" data-turbo-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6bnVsbCwicmVxdWVzdF9pZCI6IjBFNEQ6MkM0MjhGOjFFM0Q3OUU6MUYzODA2QTo2N0I2NzU0NyIsInZpc2l0b3JfaWQiOiI4NjI4ODA0NDMwMDIwODg5Njg0IiwicmVnaW9uX2VkZ2UiOiJmcmEiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-turbo-transient="true" /><meta name="visitor-hmac" content="d559cff69141827541d2376f4d17416a54ba8ed17661efd5846300788c9a0ba5" data-turbo-transient="true" />
+  <meta name="github-keyboard-shortcuts" content="repository,commits,copilot" data-turbo-transient="true" />
+
+  <meta http-equiv="x-pjax-version" content="b99cccea3e3f17ab6165db33c4f219c176f794a2c8fe67f288d694019566f099" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-csp-version" content="ace39c3b6632770952207593607e6e0be0db363435a8b877b1f96abe6430f345" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-css-version" content="1c71206221e00a0a8e77d94d48d954f34ddbd711c4a0ced954fd49cd786cfa61" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-js-version" content="7e82c4220ec79a588b8ee4781df482abcc1877daea3d5e61982761c4d8d84a54" data-turbo-track="reload">
+</div></div>
+    </div>
+    <div class="Overlay-actionWrap">
+  
+</div>
+      <scrollable-region data-labelled-by="dialog-24fc9e70-39d5-4fd8-a1a5-e9c081fff158-title">
+        <div data-view-component="true" class="Overlay-body d-flex flex-column px-2">    <div data-view-component="true" class="d-flex flex-column mb-3">
+        <nav aria-label="Site navigation" data-view-component="true" class="ActionList">
+  
+  <nav-list>
+    <ul data-target="nav-list.topLevelList" data-view-component="true" class="ActionListWrap">
+        
+          
+<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
+ 
+</span>      
+</a>
+  
+</li>
+
+</svg>
+        </span>
+</span>      
+</a>
+  
+</li>
+
+        
+          
+<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
+  
+
+        
+          
+<li data-item-id="" data-targets="nav-list.items" data-item-id="projects" data-view-component="true" class="ActionListItem">
+    
+    
+ 
+</li>
+
+        
+          
+<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
+  
+</svg>
+        </span>
+      
+    
+</a>
+  
+</li>
+
+        
+          
+<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
+    
+
+
+        
+          
+<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
+    
+ 
+        <span data-view-component="true" class="ActionListItem-label">
+          Marketplace
+</span>      
+</a>
+  
+</li>
+
+</ul>  </nav-list>
+</nav>
+
+ 
+  <query-builder data-target="qbsearch-input.queryBuilder" id="query-builder-query-builder-test" data-filter-key=":" data-view-component="true" class="QueryBuilder search-query-builder">
+    <div class="FormControl FormControl--fullWidth">
+      <label id="query-builder-test-label" for="query-builder-test" class="FormControl-label sr-only">
+        Search
+      </label>
+      <div
+        class="QueryBuilder-StyledInput width-fit "
+        data-target="query-builder.styledInput"
+      >
+          <span id="query-builder-test-leadingvisual-wrap" class="FormControl-input-leadingVisualWrap QueryBuilder-leadingVisualWrap">
+        
+    
+</modal-dialog></div>
+  </div>
+  <div data-action="click:qbsearch-input#retract" class="dark-backdrop position-fixed" hidden data-target="qbsearch-input.darkBackdrop"></div>
+  <div class="color-fg-default">
+    
+<dialog-helper>
+  <dialog data-target="qbsearch-input.feedbackDialog" data-action="close:qbsearch-input#handleDialogClose cancel:qbsearch-input#handleDialogClose" id="feedback-dialog" aria-modal="true" aria-labelledby="feedback-dialog-title" aria-describedby="feedback-dialog-description" data-view-component="true" class="Overlay Overlay-whenNarrow Overlay--size-medium Overlay--motion-scaleFade Overlay--disableScroll">
+    <div data-view-component="true" class="Overlay-header">
+  <div class="Overlay-headerContentWrap">
+    <div class="Overlay-titleWrap">
+      <h1 class="Overlay-title " id="feedback-dialog-title">
+        Provide feedback
+      </h1>
+        
+ 
